@@ -26,13 +26,13 @@ const Start = ({navigation}) => {
         </View>
             );
 }
-
 const styles = StyleSheet.create({
     container: {
-      flex: 10,
+      flex: 1,
       backgroundColor: '#fff',
       alignItems: 'center',
       justifyContent: 'center',
+      resizeMode: "center",
     },
     image: {
         flex: 1,
