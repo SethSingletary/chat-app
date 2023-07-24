@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Button, StyleSheet, Text, TextInput, View, ImageBackground, TouchableOpacity } from 'react-native';
 
+
 const Start = ({navigation}) => {
 
     const background = require('../assets/BackgroundImage.png');
@@ -9,27 +10,30 @@ const Start = ({navigation}) => {
     const [color, setColor] = useState("");
 
     return(
-        <View style={styles.container}>
-            <ImageBackground source={background} resizeMode='cover' style={styles.image}>
-                <View>
-                    <TextInput value={name} onChangeText={setName} placeholder='Your name'></TextInput>
-                    <Text>Choose Background Color:</Text>
-                    <View style={styles.colorButtons}>
-                        <TouchableOpacity style={styles.color1} onPress={() => setColor(styles.color1.backgroundColor)}><Text></Text></TouchableOpacity>
-                        <TouchableOpacity style={styles.color2} onPress={() => setColor(styles.color2.backgroundColor)}><Text></Text></TouchableOpacity>
-                        <TouchableOpacity style={styles.color3} onPress={() => setColor(styles.color3.backgroundColor)}><Text></Text></TouchableOpacity>
-                        <TouchableOpacity style={styles.color4} onPress={() => setColor(styles.color4.backgroundColor)}><Text></Text></TouchableOpacity>
+        <ImageBackground source={background} resizeMode='cover' style={styles.image}>
+            <View style={styles.container}>
+                    <View>
+                        <Text style={styles.title}>App Title</Text>
                     </View>
-                    <Button title='Start Chatting' onPress={() => navigation.navigate('Chat', {name: name, color: color})}></Button>
-                </View>
-            </ImageBackground>
-        </View>
-            );
-}
+                    <View>
+                        <TextInput value={name} onChangeText={setName} placeholder='Your name' style={styles.input}></TextInput>
+                        <Text style={styles.backgroundText}>Choose Background Color:</Text>
+                        <View style={styles.colorButtons}>
+                            <TouchableOpacity style={[styles.color1, styles.colors]} onPress={() => setColor(styles.color1.backgroundColor)}><Text></Text></TouchableOpacity>
+                            <TouchableOpacity style={[styles.color2, styles.colors]} onPress={() => setColor(styles.color2.backgroundColor)}><Text></Text></TouchableOpacity>
+                            <TouchableOpacity style={[styles.color3, styles.colors]} onPress={() => setColor(styles.color3.backgroundColor)}><Text></Text></TouchableOpacity>
+                            <TouchableOpacity style={[styles.color4, styles.colors]} onPress={() => setColor(styles.color4.backgroundColor)}><Text></Text></TouchableOpacity>
+                        </View>
+                        <Button title='Start Chatting' onPress={() => navigation.navigate('Chat', {name: name, color: color})} style={styles.startChatting}></Button>
+                    </View>
+            </View>
+        </ImageBackground>
+        );
+    }
 const styles = StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor: '#fff',
+      backgroundColor: '#FFF',
       alignItems: 'center',
       justifyContent: 'center',
       resizeMode: "center",
@@ -42,31 +46,43 @@ const styles = StyleSheet.create({
     colorButtons: {
         flexDirection: "row",
     },
-    color1: {
-        backgroundColor: "blue",
+    colors: {
         height: 50,
         width: 50,
         borderRadius: 25,
+    },
+    color1: {
+        backgroundColor: "blue",
     },
     color2: {
         backgroundColor: "red",
-        height: 50,
-        width: 50,
-        borderRadius: 25,
     },
     color3:  { 
         backgroundColor: "purple",
-        height: 50,
-        width: 50,
-        borderRadius: 25,
-
     },
     color4: {
         backgroundColor: "pink",
-        height: 50,
-        width: 50,
-        borderRadius: 25,
     },
+    title: {
+        fontSize: 45,
+        fontWeight: 600,
+        color: "#FFFFFF",
+    },
+    input: {
+        fontSize: 16,
+        color: "#757083",
+    },
+    backgroundText: {
+       fontSize: 16,
+       color: "#757083",
+    },
+    startChatting: {
+        fontSize: 16,
+        color: "#FFFFFF",
+        backgroundColor: "#757083",
+    },
+
+
   });
 
 export default Start;
