@@ -10,8 +10,8 @@ const Start = ({navigation}) => {
     const [color, setColor] = useState("");
 
     return(
-        <ImageBackground source={background} resizeMode='cover' style={styles.image}>
             <View style={styles.container}>
+                <ImageBackground source={background} resizeMode='cover' style={styles.image}>
                     <View>
                         <Text style={styles.title}>App Title</Text>
                     </View>
@@ -26,8 +26,8 @@ const Start = ({navigation}) => {
                         </View>
                         <Button title='Start Chatting' onPress={() => navigation.navigate('Chat', {name: name, color: color})} style={styles.startChatting}></Button>
                     </View>
+                    </ImageBackground>
             </View>
-        </ImageBackground>
         );
     }
 const styles = StyleSheet.create({
@@ -52,16 +52,16 @@ const styles = StyleSheet.create({
         borderRadius: 25,
     },
     color1: {
-        backgroundColor: "blue",
+        backgroundColor: "#090C08",
     },
     color2: {
-        backgroundColor: "red",
+        backgroundColor: "#474056",
     },
     color3:  { 
-        backgroundColor: "purple",
+        backgroundColor: "#8A95A5",
     },
     color4: {
-        backgroundColor: "pink",
+        backgroundColor: "#B9C6AE",
     },
     title: {
         fontSize: 45,
