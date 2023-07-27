@@ -34,13 +34,13 @@ const styles = StyleSheet.create({
     container: {
       flex: 1,
       backgroundColor: '#FFF',
-      alignItems: 'center',
       justifyContent: 'center',
       resizeMode: "center",
     },
     image: {
         flex: 1,
         resizeMode: "cover",
+        alignItems: "center",
         justifyContent: "center",
     },
     colorButtons: {
