@@ -1,5 +1,5 @@
 import { GiftedChat, Bubble } from "react-native-gifted-chat";
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { Button, KeyboardAvoidingView, Platform, StyleSheet, Text, View, } from 'react-native';
 
 const Chat = ({ route, navigation }) => {
@@ -34,6 +34,14 @@ const Chat = ({ route, navigation }) => {
     const onSend = (newMessages) => {
         setMessages(previousMessages => GiftedChat.append(previousMessages, newMessages))
     }
+    
+/** 
+    const onSend = useCallback((messages = []) => {
+      setMessages(previousMessages =>
+        GiftedChat.append(previousMessages, messages),
+      )
+    }, [])
+    */
 
     const {name} = route.params;
     const {color} = route.params;
@@ -46,12 +54,10 @@ const Chat = ({ route, navigation }) => {
     return(
         <View style={[styles.container, {backgroundColor: color}]}>
             <GiftedChat messages={messages} renderBubble={renderBubble} onSend={messages => onSend(messages)} user={{_id: 1}}>
-                {Platform.OS === 'android' ? <KeyboardAvoidingView behavior="height"/> : null}
-                {Platform.OS === "ios" ? <KeyboardAvoidingView behavior="padding" />: null}
             </GiftedChat>
+            {Platform.OS === 'android' ? <KeyboardAvoidingView behavior="height"/> : null}
+            {Platform.OS === "ios"?<KeyboardAvoidingView behavior="padding" />: null}
         </View>
-            
-        
     );
 }
 
