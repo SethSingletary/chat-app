@@ -4,8 +4,10 @@ import { Button, KeyboardAvoidingView, Platform, StyleSheet, Text, View, } from 
 import { collection, getDocs, addDoc, onSnapshot, query, where, orderBy } from "firebase/firestore";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { InputToolbar } from "react-native-gifted-chat";
+import CustomActions from "./CustomActions.js";
+import MapView from 'react-native-maps';
 
-const Chat = ({ db, route, navigation, isConnected }) => {
+const Chat = ({ db, route, navigation, isConnected, storage }) => {
   //Declare all variables and pull info needed
     const {userID} = route.params;
     const [messages, setMessages] = useState([]);
@@ -81,10 +83,45 @@ const Chat = ({ db, route, navigation, isConnected }) => {
         navigation.setOptions({backgroundColor: color});
     }, []);
 
+    const renderCustomActions = (props) => {
+      return <CustomActions storage={storage} {...props} />;
+    };
+
+    const renderCustomView = (props) => {
+      const { currentMessage} = props;
+      if (currentMessage.location) {
+        return (
+            <MapView
+              style={{width: 150,
+                height: 100,
+                borderRadius: 13,
+                margin: 3}}
+              region={{
+                latitude: currentMessage.location.latitude,
+                longitude: currentMessage.location.longitude,
+                latitudeDelta: 0.0922,
+                longitudeDelta: 0.0421,
+              }}
+            />
+        );
+      }
+      return null;
+    }
+
     return(
         <View style={[styles.container, {backgroundColor: color}]}>
-            <GiftedChat renderInputToolbar={renderInputToolbar} messages={messages} renderBubble={renderBubble} onSend={messages => onSend(messages)} user={{userID}}>
-            </GiftedChat>
+          <GiftedChat
+            messages={messages}
+            renderBubble={renderBubble}
+            renderInputToolbar={renderInputToolbar}
+            onSend={messages => onSend(messages)}
+            renderActions={renderCustomActions}
+            renderCustomView={renderCustomView}
+            user={{
+              _id: userID,
+              name
+            }}
+          />
             {Platform.OS === 'android' ? <KeyboardAvoidingView behavior="height"/> : null}
             {Platform.OS === "ios"?<KeyboardAvoidingView behavior="padding" />: null}
         </View>
