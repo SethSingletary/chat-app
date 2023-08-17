@@ -4,9 +4,10 @@ import * as ImagePicker from 'expo-image-picker';
 import { useState } from 'react';
 import * as Location from 'expo-location';
 import MapView from 'react-native-maps'; 
-import { getStorage } from 'firebase/storage';
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
-const CustomActions = ({ wrapperStyle, iconTextStyle, onSend, storage}) => {
+
+const CustomActions = ({ wrapperStyle, iconTextStyle, onSend, storage, userID}) => {
     const actionSheet = useActionSheet();
     const onActionPress = () => {
         const options = ['Choose From Library', 'Take Picture', 'Send Location', 'Cancel'];
