@@ -15,7 +15,6 @@ const Start = ({navigation}) => {
     }
 
     const background = require('../assets/BackgroundImage.png');
-
     const [name, setName] = useState("");
     const [color, setColor] = useState("");
 

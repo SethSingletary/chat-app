@@ -8,8 +8,11 @@ import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
 
 const CustomActions = ({ wrapperStyle, iconTextStyle, onSend, storage, userID}) => {
+  //declares actionSheet
     const actionSheet = useActionSheet();
+    //what is called on the + button press
     const onActionPress = () => {
+      //what each option is called
         const options = ['Choose From Library', 'Take Picture', 'Send Location', 'Cancel'];
         const cancelButtonIndex = options.length - 1;
         actionSheet.showActionSheetWithOptions(
@@ -33,6 +36,7 @@ const CustomActions = ({ wrapperStyle, iconTextStyle, onSend, storage, userID}) 
         );
       };
 
+      //generates reference for the storage
       const generateReference = (uri) => {
         const timeStamp = (new Date()).getTime();
         const imageName = uri.split("/")[uri.split("/").length - 1];
