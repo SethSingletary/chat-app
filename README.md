@@ -12,7 +12,7 @@ npm install
 ```bash
 npm expo install
 ```
-Once all packages have been installed you are all set to start running the code. Simply run
+Once all packages have been installed you must configure the firebase. Create a firebase project and then paste the configuration object in the fireBaseConfig object located in App.js. Then you are all set to start running the code. Simply run
 ```bash
 expo start
 ```
