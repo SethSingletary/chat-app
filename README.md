@@ -20,7 +20,7 @@ expo start
 While on the start screen you may choose a background color and set a name for who you are texting.
 Then press 'Start Chatting' to open the chat screen. Once there you should see the name you input at the top of the screen and have the background the color choosen. From this screen you may compose and send messages. You are also able to hit the '+' button, to send a selected image, take a picture or send your location!
 
-## Technoligys used
+## Technologies used
 Firebase
 React Native
 Node.js
